@@ -81,7 +81,7 @@ int main(int argc, char* argv[]) {
 	for (i = 1; i <= N; i++) {
 		start_timer();
 
-		minimum<<<BLOCKS, THREADS>>> (d_a, d_r);
+		even<<<BLOCKS, THREADS>>> (d_a, d_r);
 
 		ms += stop_timer();
 	}
