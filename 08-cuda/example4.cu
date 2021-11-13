@@ -12,9 +12,6 @@
 #include <cuda_runtime.h>
 #include "utils.h"
 
-using namespace std;
-#include <iostream>
-
 #define SIZE 1000000000 //1e9
 #define THREADS	256
 #define BLOCKS	MMIN(32, ((SIZE / THREADS) + 1))
@@ -50,6 +47,7 @@ int main(int argc, char* argv[]) {
 	cudaMalloc( (void**) &d_r, BLOCKS * sizeof(int) );
 
 	cudaMemcpy(d_a, a, SIZE * sizeof(int), cudaMemcpyHostToDevice);
+  cudaMemcpy(d_r, results, SIZE * sizeof(int), cudaMemcpyHostToDevice);
 
 	printf("Starting...\n");
 	ms = 0;
@@ -63,12 +61,12 @@ int main(int argc, char* argv[]) {
 
 	cudaMemcpy(results, d_r, BLOCKS * sizeof(int), cudaMemcpyDeviceToHost);
 
-	int aux = INT_MAX;
-	/*for (i = 0; i < BLOCKS; i++) {
+	/*int aux = INT_MAX;
+	for (i = 0; i < BLOCKS; i++) {
 		aux = MMIN(aux, results[i]);
 	}*/
 
-	printf("result = %i\n", aux);
+	printf("result = %i\n", results);
 	printf("avg time = %.5lf\n", (ms / N));
 
 	cudaFree(d_r);
