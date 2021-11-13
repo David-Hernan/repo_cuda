@@ -11,6 +11,9 @@
 //
 // =================================================================
 
+//nvcc example6.cu -o app
+//./app
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
@@ -20,7 +23,7 @@
 #define RENS    30000
 #define COLS    30000
 #define THREADS 256
-#define BLOCKS	MMIN(32, (((REN * COLS) / THREADS) + 1))
+#define BLOCKS	MMIN(32, (((RENS * COLS) / THREADS) + 1))
 
 __global__ void matrix_vector(int *m, int *b, int *c) {
 	//para saber qué thread es
