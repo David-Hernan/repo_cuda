@@ -18,6 +18,7 @@ __global__ void kernel(void) {
 }
 
 int main(int argc, char* argv[]) {
+	//8 hilos, 2 renglones 4 columnas
 	kernel<<<2, 4>>>();
 	cudaDeviceSynchronize();
 
