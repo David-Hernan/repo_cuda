@@ -13,16 +13,20 @@
 #include <stdio.h>
 #include <cuda_runtime.h>
 
+//función dentro de GPU que no es la f principal
 __device__ float fx(float x, float y) {
 	return x + y;
 }
 
 __global__ void kernel(void) {
+	//no se recomienda desplegar info, costoso
+	//requiere synchronize
 	printf("res = %f\n", fx(1.0, 2.0));
 }
 
 int main(int argc, char* argv[]) {
 	kernel<<<1, 1>>>();
+	//forzar sync de GPU con CPU
 	cudaDeviceSynchronize();
 
 	return 0;

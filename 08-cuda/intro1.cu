@@ -16,6 +16,7 @@
 //definir hilo principal de ejecución __global__
 __global__ void add(int *a, int *b, int *c) {
 	//info en localidad de memoria a y b sumadas y guardar en la localidad de c
+	//secuencia de trabajo que ejecutará el hilo
 	*c = *a + *b;
 }
 
