@@ -17,10 +17,8 @@
 #define BLOCKS	MMIN(32, ((SIZE / THREADS) + 1))
 // implement your code
 __global__ void even(int *array, int *results) {
-	__shared__ int cache[THREADS];
 
 	int tid = threadIdx.x + (blockIdx.x * blockDim.x);
-	int cacheIndex = threadIdx.x;
 
 	int result = 0;
 	while (tid < SIZE) {
@@ -31,22 +29,6 @@ __global__ void even(int *array, int *results) {
 		tid += blockDim.x * gridDim.x;
 	}
 
-	cache[cacheIndex] = result;
-
-	__syncthreads();
-
-	int i = blockDim.x / 2;
-	while (i > 0) {
-		if (cacheIndex < i) {
-			cache[cacheIndex] = even(cache[cacheIndex], cache[cacheIndex + 1]);
-		}
-		__syncthreads();
-		i /= 2;
-	}
-
-	if (cacheIndex == 0) {
-		results[blockIdx.x] = cache[cacheIndex];
-	}
 }
 
 int main(int argc, char* argv[]) {
@@ -78,9 +60,9 @@ int main(int argc, char* argv[]) {
 	cudaMemcpy(results, d_r, BLOCKS * sizeof(int), cudaMemcpyDeviceToHost);
 
 	int aux = INT_MAX;
-	for (i = 0; i < BLOCKS; i++) {
+	/*for (i = 0; i < BLOCKS; i++) {
 		aux = MMIN(aux, results[i]);
-	}
+	}*/
 
 	printf("result = %i\n", aux);
 	printf("avg time = %.5lf\n", (ms / N));
