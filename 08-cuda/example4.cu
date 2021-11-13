@@ -37,7 +37,7 @@ int main(int argc, char* argv[]) {
 	double ms;
 
 	a = (int *) malloc(sizeof(int) * SIZE);
-	random_array(a, SIZE);
+	fill_array(a, SIZE);
 	display_array("a", a);
 
   results = (int *) malloc(sizeof(int) * BLOCKS);
