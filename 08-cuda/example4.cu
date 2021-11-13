@@ -46,7 +46,7 @@ int main(int argc, char* argv[]) {
 	cudaMalloc( (void**) &d_r, BLOCKS * sizeof(int) );
 
 	cudaMemcpy(d_a, a, SIZE * sizeof(int), cudaMemcpyHostToDevice);
-  cudaMemcpy(d_r, results, SIZE * sizeof(int), cudaMemcpyHostToDevice);
+  //cudaMemcpy(d_r, results, SIZE * sizeof(int), cudaMemcpyHostToDevice);
 
 	printf("Starting...\n");
 	ms = 0;
