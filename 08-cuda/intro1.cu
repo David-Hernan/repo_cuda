@@ -10,6 +10,9 @@
 //
 // =================================================================
 
+//nvcc  intro1.cu
+//./a.out
+
 #include <stdio.h>
 #include <cuda_runtime.h>
 

@@ -23,9 +23,11 @@
 #define BLOCKS	MMIN(32, (((REN * COLS) / THREADS) + 1))
 
 __global__ void matrix_vector(int *m, int *b, int *c) {
+	//para saber qué thread es
 	int tid = threadIdx.x + (blockIdx.x * blockDim.x);
   int j, sum = 0;
 
+	//si es válida del renglón
   while (tid < RENS){
     sum = 0;
     for(j = 0; j < COLS; j++) {
@@ -45,6 +47,7 @@ int main(int argc, char* argv[]) {
 	b = (int*) malloc(sizeof(int) * RENS);
 	c = (int*) malloc(sizeof(int) * RENS);
 
+	//llena los arreglos
   for (i = 0; i < RENS; i++) {
 		for (j = 0; j < COLS; j++) {
 			m[(i * COLS) + j] = (j + 1);
@@ -64,6 +67,7 @@ int main(int argc, char* argv[]) {
 	for (i = 0; i < N; i++) {
 		start_timer();
 
+		//LLamo el kernes
 		matrix_vector<<<BLOCKS, THREADS>>>(d_m, d_b, d_c);
 
 		ms += stop_timer();
