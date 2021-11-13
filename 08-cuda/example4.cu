@@ -16,7 +16,7 @@
 #define THREADS	256
 #define BLOCKS	MMIN(32, ((SIZE / THREADS) + 1))
 // implement your code
-__global__ void sum(int *array, long *result) {
+__global__ void even(int *array, long *result) {
 	__shared__ long cache[THREADS];
 
 	int tid = threadIdx.x + (blockIdx.x * blockDim.x);
@@ -69,7 +69,7 @@ int main(int argc, char* argv[]) {
 	for (i = 1; i <= N; i++) {
 		start_timer();
 
-		sum<<<BLOCKS, THREADS>>> (d_a, d_r);
+		even<<<BLOCKS, THREADS>>> (d_a, d_r);
 
 		ms += stop_timer();
 	}
