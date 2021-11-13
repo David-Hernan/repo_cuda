@@ -20,11 +20,11 @@ __global__ void even(int *array, int *results) {
 
 	int tid = threadIdx.x + (blockIdx.x * blockDim.x);
 
-	int result = 0;
+	int *results = 0;
 	while (tid < SIZE) {
 		//aux = (aux < array[tid])? aux : array[tid];
     if((array[tid]%2)==0){
-      result ++;
+      *results ++;
     }
 		tid += blockDim.x * gridDim.x;
 	}
