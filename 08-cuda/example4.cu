@@ -20,7 +20,6 @@ __global__ void even(int *array, int *results) {
 
 	int tid = threadIdx.x + (blockIdx.x * blockDim.x);
 
-	int *results = 0;
 	while (tid < SIZE) {
 		//aux = (aux < array[tid])? aux : array[tid];
     if((array[tid]%2)==0){
@@ -40,7 +39,8 @@ int main(int argc, char* argv[]) {
 	fill_array(a, SIZE);
 	display_array("a", a);
 
-  results = (int *) malloc(sizeof(int) * BLOCKS);
+  //results = (int *) malloc(sizeof(int) * BLOCKS);
+  results = 0;
 
 	cudaMalloc( (void**) &d_a, SIZE * sizeof(int) );
 	cudaMalloc( (void**) &d_r, BLOCKS * sizeof(int) );
