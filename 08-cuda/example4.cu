@@ -25,7 +25,7 @@ __global__ void even(int *array, int *results) {
 	int result = 0;
 	while (tid < SIZE) {
 		//aux = (aux < array[tid])? aux : array[tid];
-    if((array[i]%2)==0){
+    if((array[tid]%2)==0){
       result ++;
     }
 		tid += blockDim.x * gridDim.x;
