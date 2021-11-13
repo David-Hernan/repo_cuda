@@ -1,3 +1,13 @@
+/*----------------------------------------------------------------
+*
+* Multiprocesadores: CUDA
+* Fecha: 13-Nov-2021
+* Autores:
+* A01173130 David Hernán García Fernández
+* A01701434 Joseph Alessandro García García
+*
+*--------------------------------------------------------------*/
+
 // =================================================================
 //
 // File: example4.cu
@@ -6,6 +16,13 @@
 //				even numbers within an array using CUDA.
 //
 // =================================================================
+//Tiempo de ejecución paralelo(CUDA):               0.0047 ms
+//Tiempo de ejecución secuencial(códigos anteriores): 74.3 ms
+//Speed Up (respecto a 02-intro-cpp): 15,808
+
+//Tiempo de ejecución paralelo(CUDA):          0.0047 ms
+//Tiempo de ejecución 1 hilo de trabajo (CUDA): 74.3 ms
+//Speed Up (respecto a 02-intro-cpp): 15,808
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -69,7 +86,7 @@ int main(int argc, char* argv[]) {
 	for (i = 1; i <= N; i++) {
 		start_timer();
 
-		even<<<BLOCKS, THREADS>>> (d_a, d_r);
+		even<<<1, 1>>> (d_a, d_r);
 
 		ms += stop_timer();
 	}
