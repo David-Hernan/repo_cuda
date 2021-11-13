@@ -13,6 +13,7 @@
 #include "utils.h"
 
 using namespace std;
+#include <iostream>
 
 #define SIZE 1000000000 //1e9
 #define THREADS	256
