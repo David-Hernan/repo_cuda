@@ -16,28 +16,22 @@
 #define THREADS	256
 #define BLOCKS	MMIN(32, ((SIZE / THREADS) + 1))
 // implement your code
-__device__ int even(int a, int b) {
-	if (a < b) {
-		return a;
-	} else {
-		return b;
-	}
-}
-
 __global__ void even(int *array, int *results) {
 	__shared__ int cache[THREADS];
 
 	int tid = threadIdx.x + (blockIdx.x * blockDim.x);
 	int cacheIndex = threadIdx.x;
 
-	int aux = INT_MAX;
+	int result = 0;
 	while (tid < SIZE) {
 		//aux = (aux < array[tid])? aux : array[tid];
-		aux = even(aux, array[tid]);
+    if((array[i]%2)==0){
+      result ++;
+    }
 		tid += blockDim.x * gridDim.x;
 	}
 
-	cache[cacheIndex] = aux;
+	cache[cacheIndex] = result;
 
 	__syncthreads();
 
@@ -56,18 +50,13 @@ __global__ void even(int *array, int *results) {
 }
 
 int main(int argc, char* argv[]) {
-	int i, *a, *results, pos;
+	int i, *a, *results;
   int *d_a, *d_r;
 	double ms;
 
 	a = (int *) malloc(sizeof(int) * SIZE);
 	random_array(a, SIZE);
 	display_array("a", a);
-
-	srand(time(0));
-	pos = rand() % SIZE;
-	printf("Setting value 0 at %i\n", pos);
-	a[pos] = 0;
 
   results = (int *) malloc(sizeof(int) * BLOCKS);
 
@@ -93,7 +82,7 @@ int main(int argc, char* argv[]) {
 		aux = MMIN(aux, results[i]);
 	}
 
-	printf("minimum = %i\n", aux);
+	printf("result = %i\n", aux);
 	printf("avg time = %.5lf\n", (ms / N));
 
 	cudaFree(d_r);
