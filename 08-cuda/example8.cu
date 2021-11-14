@@ -30,7 +30,7 @@
 #include <cuda_runtime.h>
 #include "utils.h"
 
-#define SIZE 10000
+#define SIZE 1000//10000
 #define THREADS 256
 #define BLOCKS	MMIN(32, ((SIZE / THREADS) + 1))
 
