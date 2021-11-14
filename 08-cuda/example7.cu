@@ -61,7 +61,7 @@ __global__ void prime_nums(int* arr, int size) {
 }
 
 int main(int argc, char* argv[]) {
-	int i, j, *a, *d_a;
+	int i, *a, *d_a;
 	double ms;
 
 	a = new int[MAXIMUM + 1];
