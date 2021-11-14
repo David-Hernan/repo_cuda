@@ -16,12 +16,8 @@
 //				even numbers within an array using CUDA.
 //
 // =================================================================
-//Tiempo de ejecución paralelo(CUDA):               0.0047 ms
-//Tiempo de ejecución secuencial(códigos anteriores): 74.3 ms
-//Speed Up (respecto a 02-intro-cpp): 15,808
-
-//Tiempo de ejecución paralelo(CUDA):          0.0047 ms    0.0031
-//Tiempo de ejecución 1 hilo de trabajo (CUDA):  ms
+//Tiempo de ejecución paralelo:    0.0047 ms
+//Tiempo de ejecución secuencial:    74.3 ms
 //Speed Up (respecto a 02-intro-cpp): 15,808
 
 #include <stdio.h>
