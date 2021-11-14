@@ -36,7 +36,10 @@
 #define BLOCKS	MMIN(32, ((MAXIMUM / THREADS) + 1))
 // implement your code
 __global__ void even(int* arr, int size) {
+  __shared__ long cache[THREADS];
+
   int tid = threadIdx.x + (blockIdx.x * blockDim.x);
+  int cacheIndex = threadIdx.x;
 
   int j, prime;
 
@@ -57,6 +60,23 @@ __global__ void even(int* arr, int size) {
 			}
     }
 		tid += blockDim.x * gridDim.x;
+	}
+
+  cache[cacheIndex] = arr;
+
+	__syncthreads();
+
+	int i = blockDim.x / 2;
+	while (i > 0) {
+		if (cacheIndex < i) {
+			cache[cacheIndex] += cache[cacheIndex + i];
+		}
+		__syncthreads();
+		i /= 2;
+	}
+
+	if (cacheIndex == 0) {
+		arr[blockIdx.x] = cache[cacheIndex];
 	}
 }
 
