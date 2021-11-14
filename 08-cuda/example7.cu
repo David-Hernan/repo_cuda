@@ -79,9 +79,9 @@ int main(int argc, char* argv[]) {
 	for (i = 1; i <= N; i++) {
 		start_timer();
 
-    for (j = 0; j <= MAXIMUM / 2; j++) {
+    //for (j = 0; j <= MAXIMUM / 2; j++) {
       even<<<BLOCKS, THREADS>>>(d_a, MAXIMUM);
-    }
+    //}
 
 		ms += stop_timer();
 	}
