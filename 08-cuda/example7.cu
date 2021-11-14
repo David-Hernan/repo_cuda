@@ -30,7 +30,7 @@
 #include <cuda_runtime.h>
 #include "utils.h"
 
-#define MAXIMUM 10000 //1e6  1000000
+#define MAXIMUM 100000 //1e6  1000000
 #define THREADS 256
 //#define BLOCKS	MMIN(32, ((SIZE / THREADS) + 1))
 #define BLOCKS	MMIN(32, ((MAXIMUM / THREADS) + 1))
@@ -74,7 +74,7 @@ int main(int argc, char* argv[]) {
 
   cudaMemcpy(d_a, a, MAXIMUM * sizeof(int), cudaMemcpyHostToDevice);
 
-  printf("Starting...\n");
+  printf("\nStarting...\n");
 	ms = 0;
 	for (i = 1; i <= N; i++) {
 		start_timer();
