@@ -46,10 +46,11 @@ __global__ void even(int* arr, int * c, int size) {
       }
     }
     c[pos]=arr[tid];
+    tid += blockDim.x * gridDim.x;
   }
-  while (tid < SIZE){
+  /*while (tid < SIZE){
     arr[tid]=c[tid];
-  }
+  }*/
 }
 
 int main(int argc, char* argv[]) {
@@ -77,8 +78,8 @@ int main(int argc, char* argv[]) {
 		ms += stop_timer();
 	}
 
-  cudaMemcpy(a, d_a, SIZE * sizeof(int), cudaMemcpyDeviceToHost);
-	display_array("a", a);
+  cudaMemcpy(c, d_c, SIZE * sizeof(int), cudaMemcpyDeviceToHost);
+	display_array("c", c);
   printf("avg time = %.5lf ms\n", (ms / N));
 
 	cudaFree(d_a);
