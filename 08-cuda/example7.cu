@@ -35,6 +35,8 @@
 //#define BLOCKS	MMIN(32, ((SIZE / THREADS) + 1))
 #define BLOCKS	MMIN(32, ((MAXIMUM / THREADS) + 1))
 // implement your code
+#define TOP_VALUE 100
+
 __global__ void even(int* arr, int size) {
   int tid = threadIdx.x + (blockIdx.x * blockDim.x);
 
