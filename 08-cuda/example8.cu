@@ -71,14 +71,14 @@ int main(int argc, char* argv[]) {
 
 	for (i = 1; i <= N; i++) {
 		start_timer();
-    //for (j = 0; j <= SIZE / 2; j++) {
+    for (j = 0; j <= SIZE / 2; j++) {
       even<<<BLOCKS, THREADS>>>(d_a, d_c, SIZE);
-    //}
+    }
 		ms += stop_timer();
 	}
 
-  cudaMemcpy(c, d_c, SIZE * sizeof(int), cudaMemcpyDeviceToHost);
-	display_array("c", c);
+  cudaMemcpy(a, d_a, SIZE * sizeof(int), cudaMemcpyDeviceToHost);
+	display_array("a", a);
   printf("avg time = %.5lf ms\n", (ms / N));
 
 	cudaFree(d_a);
