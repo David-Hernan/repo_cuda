@@ -48,9 +48,6 @@ __global__ void even(int* arr, int * c, int size) {
     c[pos]=arr[tid];
     tid += blockDim.x * gridDim.x;
   }
-  /*while (tid < SIZE){
-    arr[tid]=c[tid];
-  }*/
 }
 
 int main(int argc, char* argv[]) {
@@ -72,15 +69,13 @@ int main(int argc, char* argv[]) {
 
 	for (i = 1; i <= N; i++) {
 		start_timer();
-    //for (j = 0; j <= SIZE / 2; j++) {
-      even<<<BLOCKS, THREADS>>>(d_a, d_c, SIZE);
-    //}
+    even<<<BLOCKS, THREADS>>>(d_a, d_c, SIZE);
 		ms += stop_timer();
 	}
 
   cudaMemcpy(c, d_c, SIZE * sizeof(int), cudaMemcpyDeviceToHost);
 	display_array("c", c);
-  printf("avg time = %.5lf ms\n", (ms / N));
+  printf("avg time = %.5lf ms\n", (ms / N)); 
 
 	cudaFree(d_a);
   cudaFree(d_c);
