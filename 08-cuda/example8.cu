@@ -30,7 +30,7 @@
 #include <cuda_runtime.h>
 #include "utils.h"
 
-#define SIZE 1000//10000
+#define SIZE 10000
 #define THREADS 256
 #define BLOCKS	MMIN(32, ((SIZE / THREADS) + 1))
 
@@ -51,7 +51,7 @@ __global__ void even(int* arr, int * c, int size) {
 }
 
 int main(int argc, char* argv[]) {
-	int i, j, *a, *d_a, *c, *d_c;
+	int i, *a, *d_a, *c, *d_c;
 	double ms;
 
 	a = (int *) malloc(sizeof(int) * SIZE);
@@ -75,7 +75,7 @@ int main(int argc, char* argv[]) {
 
   cudaMemcpy(c, d_c, SIZE * sizeof(int), cudaMemcpyDeviceToHost);
 	display_array("c", c);
-  printf("avg time = %.5lf ms\n", (ms / N)); 
+  printf("avg time = %.5lf ms\n", (ms / N));
 
 	cudaFree(d_a);
   cudaFree(d_c);

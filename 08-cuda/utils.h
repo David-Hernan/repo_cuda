@@ -25,7 +25,7 @@
 #define MMAX(a,b) (((a)>(b))?(a):(b))
 
 #define N 				10
-#define DISPLAY		1000
+#define DISPLAY		100
 #define TOP_VALUE	1000//10000
 
 typedef unsigned char uchar;
