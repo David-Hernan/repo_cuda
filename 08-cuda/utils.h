@@ -26,7 +26,7 @@
 
 #define N 				10
 #define DISPLAY		100
-#define TOP_VALUE	100//10000
+#define TOP_VALUE	1000//10000 
 
 typedef unsigned char uchar;
 typedef enum color {BLUE, GREEN, RED} Color;
