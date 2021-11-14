@@ -18,7 +18,7 @@
 // =================================================================
 //Tiempo de ejecución paralelo:    0.0047 ms
 //Tiempo de ejecución secuencial:    74.3 ms
-//Speed Up (respecto a 02-intro-cpp): 15,808
+//Speed Up: 15,808
 
 #include <stdio.h>
 #include <stdlib.h>

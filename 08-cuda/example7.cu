@@ -20,9 +20,9 @@
 // purpose.
 //
 // =================================================================
-//Tiempo de ejecución paralelo:     ms
-//Tiempo de ejecución secuencial:    75726.6 ms
-//Speed Up (respecto a 02-intro-cpp):
+//Tiempo de ejecución paralelo:       0.0038 ms
+//Tiempo de ejecución secuencial: 103666.749 ms
+//Speed Up: 27,280,723.42
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -35,7 +35,7 @@
 //#define BLOCKS	MMIN(32, ((SIZE / THREADS) + 1))
 #define BLOCKS	MMIN(32, ((MAXIMUM / THREADS) + 1))
 // implement your code
-__global__ void even(int* arr, int size) {
+__global__ void prime_nums(int* arr, int size) {
   int tid = threadIdx.x + (blockIdx.x * blockDim.x);
 
   int j, prime;
@@ -79,7 +79,7 @@ int main(int argc, char* argv[]) {
 	for (i = 1; i <= N; i++) {
 		start_timer();
 
-    even<<<BLOCKS, THREADS>>>(d_a, MAXIMUM);
+    prime_nums<<<BLOCKS, THREADS>>>(d_a, MAXIMUM);
 
 		ms += stop_timer();
 	}
