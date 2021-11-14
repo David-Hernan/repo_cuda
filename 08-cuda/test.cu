@@ -76,7 +76,7 @@ int main(int argc, char* argv[]) {
 
 	for (i = 2; i < TOP_VALUE; i++) {
 		if(a[i] == 1){
-            printf("%i ",i)
+            printf("%i ",i);
         }
 	}
 
