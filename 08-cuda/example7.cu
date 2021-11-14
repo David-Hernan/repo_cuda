@@ -36,7 +36,7 @@
 #define BLOCKS	MMIN(32, ((MAXIMUM / THREADS) + 1))
 // implement your code
 __global__ void even(int* arr, int size) {
-  __shared__ long cache[THREADS];
+  __shared__ int cache[THREADS];
 
   int tid = threadIdx.x + (blockIdx.x * blockDim.x);
   int cacheIndex = threadIdx.x;
