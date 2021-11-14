@@ -20,9 +20,9 @@
 // purpose.
 //
 // =================================================================
-//Tiempo de ejecución paralelo:        ms
-//Tiempo de ejecución secuencial:  ms
-//Speed Up:
+//Tiempo de ejecución paralelo:     0.0029 ms
+//Tiempo de ejecución secuencial: 282.8298 ms
+//Speed Up: 97,527.5172
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -34,7 +34,7 @@
 #define THREADS 256
 #define BLOCKS	MMIN(32, ((SIZE / THREADS) + 1))
 
-__global__ void even(int* arr, int * c, int size) {
+__global__ void enum_sort(int* arr, int * c, int size) {
   int tid = threadIdx.x + (blockIdx.x * blockDim.x);
   int pos;
 
@@ -69,7 +69,7 @@ int main(int argc, char* argv[]) {
 
 	for (i = 1; i <= N; i++) {
 		start_timer();
-    even<<<BLOCKS, THREADS>>>(d_a, d_c, SIZE);
+    enum_sort<<<BLOCKS, THREADS>>>(d_a, d_c, SIZE);
 		ms += stop_timer();
 	}
 
