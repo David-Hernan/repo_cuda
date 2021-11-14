@@ -65,6 +65,10 @@ int main(int argc, char* argv[]) {
 	double ms;
 
 	a = new int[MAXIMUM + 1];
+  printf("At first, neither is a prime. We will display to TOP_VALUE:\n");
+	for (i = 2; i < TOP_VALUE; i++) {
+		printf("%i ", i);
+	}
 
 	cudaMalloc( (void**) &d_a, MAXIMUM * sizeof(int) );
 
