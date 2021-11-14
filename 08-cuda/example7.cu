@@ -94,7 +94,7 @@ int main(int argc, char* argv[]) {
 		}
 	}
 	//display_array("a", a);
-  printf("avg time = %.5lf ms\n", (ms / N));
+  printf("\navg time = %.5lf ms\n", (ms / N));
 
 	cudaFree(d_a);
 
