@@ -70,7 +70,13 @@ int main(int argc, char* argv[]) {
 	}
 
   cudaMemcpy(a, d_a, MAXIMUM * sizeof(int), cudaMemcpyDeviceToHost);
-	display_array("a", a);
+  printf("Expanding the numbers that are prime to TOP_VALUE:\n");
+  for (int i = 2; i < TOP_VALUE; i++) {
+		if (a[i] == 1) {
+			printf("%i ", i);
+		}
+	}
+	//display_array("a", a);
   printf("avg time = %.5lf ms\n", (ms / N));
 
 	cudaFree(d_a);
