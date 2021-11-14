@@ -20,6 +20,9 @@
 // purpose.
 //
 // =================================================================
+//Tiempo de ejecución paralelo:     ms
+//Tiempo de ejecución secuencial:    75726.6 ms
+//Speed Up (respecto a 02-intro-cpp): 
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -27,7 +30,7 @@
 #include <cuda_runtime.h>
 #include "utils.h"
 
-#define MAXIMUM 10000 //1e6 1000000
+#define MAXIMUM 1000000 //1e6  10000
 #define THREADS 256
 //#define BLOCKS	MMIN(32, ((SIZE / THREADS) + 1))
 #define BLOCKS	MMIN(32, ((MAXIMUM / THREADS) + 1))
