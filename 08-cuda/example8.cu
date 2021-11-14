@@ -71,9 +71,9 @@ int main(int argc, char* argv[]) {
 
 	for (i = 1; i <= N; i++) {
 		start_timer();
-    for (j = 0; j <= SIZE / 2; j++) {
-      even<<<1, THREADS>>>(d_a, d_c, SIZE);
-    }
+    //for (j = 0; j <= SIZE / 2; j++) {
+      even<<<BLOCKS, THREADS>>>(d_a, d_c, SIZE);
+    //}
 		ms += stop_timer();
 	}
 
