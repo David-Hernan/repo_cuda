@@ -98,7 +98,7 @@ int main(int argc, char* argv[]) {
 		acum += results[i];
 	}
 
-	printf("sum = %li\n", acum);
+	printf("result = %li\n", acum);
 	printf("avg time = %.5lf\n", (ms / N));
 
 	cudaFree(d_r);
