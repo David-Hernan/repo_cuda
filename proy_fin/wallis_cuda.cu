@@ -34,6 +34,7 @@ __global__ void sum(int *array, double *result) {
 	double acum = 1.0;
 	while (tid < SIZE) {
 		acum *= ((2.0*array[tid])/((2.0*array[tid])-1))*((2.0*array[tid])/((2.0*array[tid])+1));
+		printf("pi = %.16f\n", acum);
 		tid += blockDim.x * gridDim.x;
 	}
 
@@ -86,7 +87,6 @@ int main(int argc, char* argv[]) {
 
 	double acum = 1.0;
 	for (i = 0; i < BLOCKS; i++) {
-		printf("pi = %.16f\n", acum);
 		acum += results[i];
 	}
 
