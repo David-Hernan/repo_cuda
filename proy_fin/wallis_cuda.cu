@@ -25,7 +25,7 @@
 #define THREADS	256
 #define BLOCKS	MMIN(32, ((SIZE / THREADS) + 1))
 
-__global__ void sum(int *array, long *result) {
+__global__ void sum(int *array, double *result) {
 	__shared__ long cache[THREADS];
 
 	int tid = threadIdx.x + (blockIdx.x * blockDim.x);
@@ -58,17 +58,17 @@ __global__ void sum(int *array, long *result) {
 
 int main(int argc, char* argv[]) {
 	int i, *array, *d_a;
-	long *results, *d_r;
+	double *results, *d_r;
 	double ms;
 
 	array = (int*) malloc( SIZE * sizeof(int) );
 	fill_array(array, SIZE);
 	display_array("array", array);
 
-	results = (long*) malloc( BLOCKS * sizeof(long) );
+	results = (double*) malloc( BLOCKS * sizeof(double) );
 
 	cudaMalloc( (void**) &d_a, SIZE * sizeof(int) );
-	cudaMalloc( (void**) &d_r, BLOCKS * sizeof(long) );
+	cudaMalloc( (void**) &d_r, BLOCKS * sizeof(double) );
 
 	cudaMemcpy(d_a, array, SIZE * sizeof(int), cudaMemcpyHostToDevice);
 
@@ -82,9 +82,9 @@ int main(int argc, char* argv[]) {
 		ms += stop_timer();
 	}
 
-	cudaMemcpy(results, d_r, BLOCKS * sizeof(long), cudaMemcpyDeviceToHost);
+	cudaMemcpy(results, d_r, BLOCKS * sizeof(double), cudaMemcpyDeviceToHost);
 
-	long acum = 0;
+	double acum = 0;
 	for (i = 0; i < BLOCKS; i++) {
 		acum += results[i];
 	}
