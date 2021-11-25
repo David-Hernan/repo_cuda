@@ -62,7 +62,7 @@ int main(int argc, char* argv[]) {
 
 	array = (int*) malloc( SIZE * sizeof(int) );
 	for (i = 1; i < SIZE+1; i++) {
-    a[i-1] = i;
+    array[i-1] = i;
   }
 
 	results = (double*) malloc( BLOCKS * sizeof(double) );
