@@ -31,7 +31,7 @@ __global__ void sum(int *array, double *result) {
 	int tid = threadIdx.x + (blockIdx.x * blockDim.x);
 	int cacheIndex = threadIdx.x;
 
-	double acum = 0;
+	double acum = 1.0;
 	while (tid < SIZE) {
 		acum *= ((2.0*array[tid])/((2.0*array[tid])-1))*((2.0*array[tid])/((2.0*array[tid])+1));
 		tid += blockDim.x * gridDim.x;
