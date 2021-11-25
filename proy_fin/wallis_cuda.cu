@@ -84,7 +84,7 @@ int main(int argc, char* argv[]) {
 
 	cudaMemcpy(results, d_r, BLOCKS * sizeof(double), cudaMemcpyDeviceToHost);
 
-	double acum = 0;
+	double acum = 1.0;
 	for (i = 0; i < BLOCKS; i++) {
 		acum *= results[i];
 	}
