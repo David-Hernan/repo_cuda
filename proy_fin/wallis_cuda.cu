@@ -1,15 +1,20 @@
-// =================================================================
-//
-// File: example1.cu
-// Author: Pedro Perez
-// Description: This file contains the code that adds all the
-//				elements of an integer array using CUDA.
-//
-// Copyright (c) 2020 by Tecnologico de Monterrey.
-// All Rights Reserved. May be reproduced for any non-commercial
-// purpose.
-//
-// =================================================================
+/*----------------------------------------------------------------
+*
+* Multiprocesadores: Proyecto final
+* Fecha: 24-Nov-2021
+* Autor: A01173130 David Hernán García Fernández
+*
+*--------------------------------------------------------------*/
+
+// ==============================================================
+// Descripción: Este archivo contiene el código que, utilizando
+//				CUDA, calcula una aproximación de PI mediante el
+//				método del Producto de Wallis.
+// ==============================================================
+
+//Tiempo de ejecución secuencial:   ms
+//Tiempo de ejecución con Threads:    ms
+//Speed Up:
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -26,9 +31,10 @@ __global__ void sum(int *array, long *result) {
 	int tid = threadIdx.x + (blockIdx.x * blockDim.x);
 	int cacheIndex = threadIdx.x;
 
-	long acum = 0;
+	double acum = 0;
 	while (tid < SIZE) {
-		acum += array[tid];
+		//acum += array[tid];
+		acum *= (2.0*array[tid])/((2.0*array[tid])-1)*(2.0*array[tid])/((2.0*array[tid])+1);
 		tid += blockDim.x * gridDim.x;
 	}
 
@@ -83,7 +89,8 @@ int main(int argc, char* argv[]) {
 		acum += results[i];
 	}
 
-	printf("sum = %li\n", acum);
+	//printf("sum = %li\n", acum);
+	printf("pi = %.16f para %d iteraciones.\n", acum,SIZE);
 	printf("avg time = %.5lf\n", (ms / N));
 
 	cudaFree(d_r);
