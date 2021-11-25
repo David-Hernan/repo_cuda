@@ -86,7 +86,7 @@ int main(int argc, char* argv[]) {
 
 	double acum = 1.0;
 	for (i = 0; i < BLOCKS; i++) {
-		acum *= results[i];
+		acum += results[i];
 	}
 
 	//printf("sum = %li\n", acum);
