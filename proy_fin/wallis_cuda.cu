@@ -33,8 +33,7 @@ __global__ void sum(int *array, double *result) {
 
 	double acum = 0;
 	while (tid < SIZE) {
-		//acum += array[tid];
-		acum *= (2.0*array[tid])/((2.0*array[tid])-1)*(2.0*array[tid])/((2.0*array[tid])+1);
+		acum *= ((2.0*array[tid])/((2.0*array[tid])-1))*((2.0*array[tid])/((2.0*array[tid])+1));
 		tid += blockDim.x * gridDim.x;
 	}
 
@@ -62,8 +61,9 @@ int main(int argc, char* argv[]) {
 	double ms;
 
 	array = (int*) malloc( SIZE * sizeof(int) );
-	fill_array(array, SIZE);
-	display_array("array", array);
+	for (i = 1; i < SIZE+1; i++) {
+    a[i-1] = i;
+  }
 
 	results = (double*) malloc( BLOCKS * sizeof(double) );
 
