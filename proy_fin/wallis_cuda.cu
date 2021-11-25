@@ -86,6 +86,7 @@ int main(int argc, char* argv[]) {
 
 	double acum = 1.0;
 	for (i = 0; i < BLOCKS; i++) {
+		printf("pi = %.16f\n", acum);
 		acum += results[i];
 	}
 
