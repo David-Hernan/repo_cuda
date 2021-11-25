@@ -65,7 +65,7 @@ int main(int argc, char* argv[]) {
     array[i-1] = i;
   }
 
-	results = (double*) malloc( BLOCKS * sizeof(double) );
+	results = (double*) malloc( BLOCKS * sizeof(double));
 
 	cudaMalloc( (void**) &d_a, SIZE * sizeof(int) );
 	cudaMalloc( (void**) &d_r, BLOCKS * sizeof(double) );
@@ -87,7 +87,7 @@ int main(int argc, char* argv[]) {
 	double acum = 1.0;
 	for (i = 0; i < BLOCKS; i++) {
 		printf("pi = %.16f\n", results);
-		acum += results[i];
+		acum *= results[i];
 	}
 
 	//printf("sum = %li\n", acum);
